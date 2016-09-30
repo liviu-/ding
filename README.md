@@ -12,7 +12,7 @@ This is a very simple solution to help with short-term organisation. The beep so
 Download the ding.py binary and run it however you please.
 
 ```
-$ ./ding.py in 1s
+$ ./ding in 1s
 ```
 
 
