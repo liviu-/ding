@@ -2,7 +2,10 @@
 
 This is a very simple solution to help with short-term organisation. The beep sound uses the motherboard audio, so it works even if your speakers are muted. Furthermore, it works wherever there's a terminal including ssh sessions.
 
-No dependencies, optional installation via `pip`, and less than 100 lines of code.
+- No dependencies
+- Install with `pip` or just copy the binary somewhere in `$PATH`
+- Python2 and Python3 compatible
+- Less than 100 lines of code.
 
 ## Installation
 
