@@ -4,7 +4,7 @@ import sys
 import time
 import datetime
 
-ERROR_MSG = 'Invalid arguments'
+EXIT_MSG = 'Invalid arguments'
 
 class TimeParser():
 
@@ -37,7 +37,10 @@ def beep(seconds):
 
 
 def parse_time(args):
-    relative = True if args[0] == 'in' else False if args[0] == 'at' else sys.exit(ERROR_MSG)
+    try:
+        relative = True if args[0] == 'in' else False if args[0] == 'at' else sys.exit(EXIT_MSG)
+    except IndexError:
+        sys.exit(EXIT_MSG)
     user_time = args[1:]
     parser = TimeParser(user_time, relative)
     seconds = parser.get_seconds()
