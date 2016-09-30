@@ -6,6 +6,10 @@ import datetime
 
 EXIT_MSG = 'Invalid arguments'
 
+# A few parameters
+N_BEEPS = 4
+WAIT_BEEPS = 0.15
+
 class TimeParser():
 
     time_map = {
@@ -32,8 +36,10 @@ class TimeParser():
 
 def beep(seconds):
     time.sleep(seconds)
-    sys.stdout.write('\a')
-    sys.stdout.flush()    
+    for i in range(N_BEEPS):
+        sys.stdout.write('\a')
+        sys.stdout.flush()
+        time.sleep(WAIT_BEEPS)
 
 
 def parse_time(args):
