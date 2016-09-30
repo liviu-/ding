@@ -49,9 +49,12 @@ def parse_time(args):
         sys.exit(EXIT_MSG)
     user_time = args[1:]
     parser = TimeParser(user_time, relative)
-    seconds = parser.get_seconds()
+    return parser.get_seconds()
+
+
+def main():
+    seconds = parse_time(sys.argv[1:])
     beep(seconds)
 
-
 if __name__ == '__main__':
-    parse_time(sys.argv[1:])
+    main()
