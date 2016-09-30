@@ -26,6 +26,12 @@ $ ding in 15m
 $ ding at 16:45
 ```
 
+- Pomodoro technique
+```
+$ alias pomo="ding in 25m"
+$ pomo
+```
+
 
 ## Example usage:
 
