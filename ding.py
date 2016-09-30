@@ -19,7 +19,7 @@ class TimeParser():
     }
 
     def __init__(self, time, relative):
-        self.time = time
+        self.time = time or sys.exit(EXIT_MSG)
         self.relative = relative
 
     def get_seconds(self):
