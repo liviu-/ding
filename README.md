@@ -44,6 +44,7 @@ $ ding in 2m
 $ ding in 2h 15m
 $ ding in 2m 15s
 
+$ ding at 12
 $ ding at 17:30
 $ ding at 17:30:21
 ```
