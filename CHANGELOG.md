@@ -28,6 +28,7 @@ and this project pretends to adhere to [Semantic Versioning](http://semver.org/)
 
 Initial stable release
 
+[Unreleased]: https://github.com/liviu-/ding/compare/v1.1.0..HEAD
 [1.1.0]: https://github.com/liviu-/ding/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/liviu-/ding/compare/v0.0.1...v1.0.0
 [0.0.1]: https://github.com/liviu-/ding/tree/v0.0.1
