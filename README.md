@@ -1,6 +1,6 @@
 # Ding [![Build Status](https://travis-ci.org/liviu-/ding.svg?branch=develop)](https://travis-ci.org/liviu-/ding)
 
-![usage_gif](gif/usage.gif)
+![usage_gif](usage.gif)
 
 Tired of `$ sleep 4231; beep`? This is a very simple solution to help with short-term time management. The beep sound uses the motherboard audio, so it works even if your speakers are muted, but not if you muted the PC speakers :stuck_out_tongue: . Furthermore, it works wherever there's a Linux terminal, and that includes ssh sessions.
 
