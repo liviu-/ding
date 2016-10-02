@@ -39,4 +39,4 @@ def test_time_parser_absolute_5m():
     new_time = ':'.join(str((datetime.now() + timedelta(minutes=5)).time()).split(':')[:2])
     print(new_time)
     parser = ding.TimeParser([new_time], relative=False)
-    assert 60 * 4 < parser.get_seconds() < 60 * 6
+    assert 60 * 4 <= parser.get_seconds() < 60 * 6
