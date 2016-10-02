@@ -10,13 +10,15 @@ This is a very simple solution to help with short-term organisation. The beep so
 ## Installation
 
 ```
-pip install "git+https://github.com/liviu-/ding"
+pip install ding-ding
 ```
+
+(`ding` was taken)
 
 Alternatively, download the ding.py binary and run it however you please.
 
 ```
-$ ./ding in 1s
+$ ./ding.py in 1s
 ```
 
 ## Scenarios

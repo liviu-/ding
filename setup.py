@@ -7,7 +7,7 @@ def get_version():
     return version
 
 setup(
-    name='ding',
+    name='ding-ding',
     description='Quick organisation via the commandline',
     url='https://github.com/liviu-/ding',
     version=get_version(),
