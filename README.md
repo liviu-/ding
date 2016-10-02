@@ -5,7 +5,7 @@ This is a very simple solution to help with short-term organisation. The beep so
 - No dependencies
 - Install with `pip` or just copy the binary somewhere in `$PATH`
 - Python2 and Python3 compatible
-- Less than 100 lines of code.
+- Around 100 LOC
 
 ## Installation
 

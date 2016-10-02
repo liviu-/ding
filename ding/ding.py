@@ -13,6 +13,7 @@ Examples:
     $ ding in 5m 30s
 """
 
+VERSION = '0.0.1'
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
@@ -89,6 +90,9 @@ def parse_time(args):
 
 
 def main(args=sys.argv[1:]):
+    if args and args[0] == '--version':
+        print(VERSION)
+        sys.exit()
     try:
         seconds = parse_time(check_input(args))
     except InvalidArguments as e:
