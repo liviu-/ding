@@ -6,6 +6,9 @@ and this project pretends to adhere to [Semantic Versioning](http://semver.org/)
 
 ## [Unreleased] 
 
+### Added
+- Added a countdown for the script
+
 ### Changed
 - Updated regex from the help section.
 
