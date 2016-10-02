@@ -1,4 +1,4 @@
-# Ding
+# Ding [![Build Status](https://travis-ci.org/liviu-/ding.svg?branch=develop)](https://travis-ci.org/liviu-/ding)
 
 ![usage_gif](gif/usage.gif)
 
