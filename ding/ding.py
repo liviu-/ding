@@ -56,9 +56,8 @@ class TimeParser():
         except ValueError as e:
             raise InvalidArguments(e)
         now = datetime.datetime.now()
-        if user_time < now:
-            raise InvalidArguments('The time provided must be in the future')
-        return (user_time - now).seconds 
+        return ((user_time - now).seconds if user_time > now
+                else (user_time + datetime.timedelta(days=1) - now).seconds)
 
 
 def beep(seconds):
