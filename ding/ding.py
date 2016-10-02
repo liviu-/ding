@@ -20,7 +20,7 @@ Examples:
     $ ding in 5m 30s
 """
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
