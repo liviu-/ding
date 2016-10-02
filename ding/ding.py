@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 """Simple CLI beep tool"""
+
+from __future__ import unicode_literals
+from __future__ import print_function
+
 import sys
 import time
 import datetime
+
 
 EXIT_MSG = """Invalid arguments: {}\n---------
 $ ding at hh[:mm[:ss]]
@@ -36,7 +41,7 @@ def check_input(args):
     if args[0] == 'at':
         if len(args) > 2:
             raise InvalidArguments('too many arguments')
-        if not all(arg.isnumeric() for arg in args[1].split(':')):
+        if not all([arg.isnumeric() for arg in args[1].split(':')]):
             raise InvalidArguments('there should only be numbers optionally separated by ":"')
         # Valid time
         try:
@@ -65,9 +70,9 @@ class TimeParser():
         return sum([self.time_map[t[-1]] * int(t[:-1]) for t in self.time])
 
     def _get_seconds_absolute(self):
+        now = datetime.datetime.now()
         user_time = (datetime.datetime.combine(datetime.date.today(),
                                                datetime.time(*map(int, self.time[0].split(':')))))
-        now = datetime.datetime.now()
         return ((user_time - now).seconds if user_time > now
                 else (user_time + datetime.timedelta(days=1) - now).seconds)
 

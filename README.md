@@ -1,11 +1,13 @@
-# [WIP] Ding
+# Ding [![Build Status](https://travis-ci.org/liviu-/ding.svg?branch=develop)](https://travis-ci.org/liviu-/ding)
 
-This is a very simple solution to help with short-term organisation. The beep sound uses the motherboard audio, so it works even if your speakers are muted. Furthermore, it works wherever there's a terminal including ssh sessions.
+![usage_gif](gif/usage.gif)
 
-- No dependencies
-- Install with `pip` or just copy the binary somewhere in `$PATH`
-- Python2 and Python3 compatible
-- Around 100 LOC
+Tired of `$ sleep 4231; beep`? This is a very simple solution to help with short-term time management. The beep sound uses the motherboard audio, so it works even if your speakers are muted, but not if you muted the PC speakers :stuck_out_tongue: . Furthermore, it works wherever there's a Linux terminal, and that includes ssh sessions.
+
+- No dependencies :dizzy:
+- Install with `pip` or just copy the binary somewhere in `$PATH` :sparkles:
+- Python2 and Python3 compatible :star2:
+- Around 100 LOC :boom:
 
 ## Installation
 
@@ -32,7 +34,7 @@ $ ding in 15m
 $ ding at 16:45
 ```
 
-- Pomodoro technique
+- [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique)
 ```
 $ alias pomo="ding in 25m"
 $ pomo
@@ -42,10 +44,12 @@ $ pomo
 ## Example usage:
 
 ```
+# Relative time
 $ ding in 2m
 $ ding in 2h 15m
 $ ding in 2m 15s
 
+# Absolute time
 $ ding at 12
 $ ding at 17:30
 $ ding at 17:30:21
