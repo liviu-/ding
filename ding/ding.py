@@ -85,8 +85,7 @@ def print_time(seconds):
         os.system('clear')
         print(datetime.timedelta(seconds=seconds))
         seconds -= 1
-        end = time.time()
-        time.sleep(1 - end + start)
+        time.sleep(1 - time.time() + start)
 
 
 def beep(seconds):
