@@ -12,7 +12,7 @@ import datetime
 
 EXIT_MSG = """Invalid arguments: {}\n---------
 $ ding at hh[:mm[:ss]]
-$ ding in \d+[smh]( \d+[smh])*
+$ ding in ((| )\d+[smh])+
 
 Examples:
     $ ding at 15:30
