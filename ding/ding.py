@@ -4,29 +4,32 @@ import sys
 import time
 import datetime
 
-EXIT_MSG = 'Invalid arguments'
+EXIT_MSG = 'Invalid arguments. {}'
 
 # A few parameters
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
+class InvalidArguments(Exception):
+    pass
+
 def check_input(args):
     # No arguments
     if len(args) < 2 or args[0] not in ['in', 'at']:
-        sys.exit(EXIT_MSG)
+        raise InvalidArguments() 
 
     if args[0] == 'in':
         # Check suffix
         if not all(arg.endswith(('s', 'm', 'h')) for arg in args[1:]):
-            sys.exit(EXIT_MSG)
+            raise InvalidArguments() 
         # Check prefix is positive integer
         if not all(arg[:-1].isdigit() for arg in args[1:]):
-            sys.exit(EXIT_MSG)
+            raise InvalidArguments() 
 
     if args[0] == 'at':
         # There should be only one :-separated string
         if len(args) > 2:
-            sys.exit(EXIT_MSG)
+            raise InvalidArguments() 
 
     return args
 
@@ -51,9 +54,11 @@ class TimeParser():
         try:
             user_time = datetime.datetime.combine(datetime.date.today(), datetime.time(*map(int, self.time[0].split(':'))))
         except ValueError as e:
-            sys.exit(e)
+            raise InvalidArguments(e)
         now = datetime.datetime.now()
-        return (user_time - now).seconds if user_time > now else sys.exit('The time provided must be in the future')
+        if user_time < now:
+            raise InvalidArguments('The time provided must be in the future')
+        return (user_time - now).seconds 
 
 
 def beep(seconds):
@@ -71,8 +76,11 @@ def parse_time(args):
     return parser.get_seconds()
 
 
-def main():
-    seconds = parse_time(check_input(sys.argv[1:]))
+def main(args=sys.argv[1:]):
+    try:
+        seconds = parse_time(check_input(args))
+    except InvalidArguments as e:
+        sys.exit(EXIT_MSG.format(e))
     beep(seconds)
 
 if __name__ == '__main__':
