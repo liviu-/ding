@@ -34,7 +34,7 @@ $ ding in 15m
 $ ding at 16:45
 ```
 
-- Pomodoro technique
+- [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique)
 ```
 $ alias pomo="ding in 25m"
 $ pomo
@@ -44,10 +44,12 @@ $ pomo
 ## Example usage:
 
 ```
+# Relative time
 $ ding in 2m
 $ ding in 2h 15m
 $ ding in 2m 15s
 
+# Absolute time
 $ ding at 12
 $ ding at 17:30
 $ ding at 17:30:21
