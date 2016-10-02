@@ -1,6 +1,6 @@
 # Ding
 
-This is a very simple solution to help with short-term organisation. The beep sound uses the motherboard audio, so it works even if your speakers are muted. Furthermore, it works wherever there's a terminal including ssh sessions.
+This is a very simple solution to help with short-term organisation. The beep sound uses the motherboard audio, so it works even if your speakers are muted, but not if you muted the PC speakers :stuck_out_tongue: . Furthermore, it works wherever there's a terminal including ssh sessions.
 
 - No dependencies
 - Install with `pip` or just copy the binary somewhere in `$PATH`
