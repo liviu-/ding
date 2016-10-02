@@ -2,7 +2,7 @@
 
 ![usage_gif](gif/usage.gif)
 
-Tired of `$ sleep 4231; beep`? This is a very simple solution to help with short-term time management. The beep sound uses the motherboard audio, so it works even if your speakers are muted, but not if you muted the PC speakers :stuck_out_tongue: . Furthermore, it works wherever there's a terminal ant that includes ssh sessions.
+Tired of `$ sleep 4231; beep`? This is a very simple solution to help with short-term time management. The beep sound uses the motherboard audio, so it works even if your speakers are muted, but not if you muted the PC speakers :stuck_out_tongue: . Furthermore, it works wherever there's a terminal, and that includes ssh sessions.
 
 - No dependencies :dizzy:
 - Install with `pip` or just copy the binary somewhere in `$PATH` :sparkles:

@@ -9,4 +9,4 @@ python:
   - "3.6"
   - "nightly" # currently points to 3.6-dev
 
-script: pytest
+script: py.test
