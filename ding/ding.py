@@ -4,6 +4,8 @@
 from __future__ import unicode_literals
 from __future__ import print_function
 
+import os
+import threading
 import sys
 import time
 import datetime
@@ -11,14 +13,14 @@ import datetime
 
 EXIT_MSG = """Invalid arguments: {}\n---------
 $ ding at hh[:mm[:ss]]
-$ ding in (\digit+[smh] )+
+$ ding in \d+[smh]( \d+[smh])*
 
 Examples:
     $ ding at 15:30
     $ ding in 5m 30s
 """
 
-VERSION = '0.0.1'
+VERSION = '1.1.0'
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
@@ -77,9 +79,19 @@ class TimeParser():
                 else (user_time + datetime.timedelta(days=1) - now).seconds)
 
 
+def print_time(seconds):
+    """Print countdown for `seconds`"""
+    while seconds > 0:
+        start = time.time()
+        os.system('clear')
+        print(datetime.timedelta(seconds=seconds))
+        seconds -= 1
+        end = time.time()
+        time.sleep(1 - end + start)
+
+
 def beep(seconds):
-    """Wait `seconds` and then beep"""
-    time.sleep(seconds)
+    """Make the beep noise"""
     for _ in range(N_BEEPS):
         sys.stdout.write('\a')
         sys.stdout.flush()
@@ -102,6 +114,7 @@ def main(args=sys.argv[1:]):
         seconds = parse_time(check_input(args))
     except InvalidArguments as e:
         sys.exit(EXIT_MSG.format(e))
+    print_time(seconds)
     beep(seconds)
 
 if __name__ == '__main__':
