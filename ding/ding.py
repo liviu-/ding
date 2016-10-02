@@ -70,9 +70,9 @@ class TimeParser():
         return sum([self.time_map[t[-1]] * int(t[:-1]) for t in self.time])
 
     def _get_seconds_absolute(self):
+        now = datetime.datetime.now()
         user_time = (datetime.datetime.combine(datetime.date.today(),
                                                datetime.time(*map(int, self.time[0].split(':')))))
-        now = datetime.datetime.now()
         return ((user_time - now).seconds if user_time > now
                 else (user_time + datetime.timedelta(days=1) - now).seconds)
 
