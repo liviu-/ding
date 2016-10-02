@@ -17,7 +17,7 @@ pip install ding-ding
 
 (`ding` was taken)
 
-Alternatively, download the ding.py binary and run it however you please.
+Alternatively, download the [ding.py](https://github.com/liviu-/ding/blob/develop/ding/ding.py) file and run it however you please.
 
 ```
 $ ./ding.py in 1s
