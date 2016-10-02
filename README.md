@@ -1,5 +1,7 @@
 # Ding
 
+![usage_gif](gif/usage.gif)
+
 This is a very simple solution to help with short-term organisation. The beep sound uses the motherboard audio, so it works even if your speakers are muted. Furthermore, it works wherever there's a terminal including ssh sessions.
 
 - No dependencies
