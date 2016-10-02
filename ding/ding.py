@@ -1,6 +1,5 @@
-"""Simple CLI beep tool"""
 #!/usr/bin/env python
-
+"""Simple CLI beep tool"""
 import sys
 import time
 import datetime
@@ -17,24 +16,27 @@ Examples:
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
-class InvalidArguments(Exception): pass
+
+class InvalidArguments(Exception):
+    pass
+
 
 def check_input(args):
     """Validate user input"""
     if len(args) < 2 or args[0] not in ['in', 'at']:
-        raise InvalidArguments('insufficient number of arguments') 
+        raise InvalidArguments('insufficient number of arguments')
 
     if args[0] == 'in':
         if not all(arg.endswith(('s', 'm', 'h')) for arg in args[1:]):
-            raise InvalidArguments('please use s/m/h suffixes') 
+            raise InvalidArguments('please use s/m/h suffixes')
         if not all(arg[:-1].isdigit() for arg in args[1:]):
-            raise InvalidArguments('please use numbers for specifying the duration of time units') 
+            raise InvalidArguments('please use numbers for specifying the duration of time units')
 
     if args[0] == 'at':
         if len(args) > 2:
-            raise InvalidArguments('too many arguments') 
+            raise InvalidArguments('too many arguments')
         if not all(arg.isnumeric() for arg in args[1].split(':')):
-            raise InvalidArguments('there should only be numbers optionally separated by ":"') 
+            raise InvalidArguments('there should only be numbers optionally separated by ":"')
         # Valid time
         try:
             datetime.time(*map(int, args[1].split(':')))
@@ -59,7 +61,7 @@ class TimeParser():
         return self._get_seconds_relative() if self.relative else self._get_seconds_absolute()
 
     def _get_seconds_relative(self):
-        return sum([self.time_map[t[-1]] *  int(t[:-1]) for t in self.time])
+        return sum([self.time_map[t[-1]] * int(t[:-1]) for t in self.time])
 
     def _get_seconds_absolute(self):
         user_time = (datetime.datetime.combine(datetime.date.today(),
@@ -72,7 +74,7 @@ class TimeParser():
 def beep(seconds):
     """Wait `seconds` and then beep"""
     time.sleep(seconds)
-    for i in range(N_BEEPS):
+    for _ in range(N_BEEPS):
         sys.stdout.write('\a')
         sys.stdout.flush()
         time.sleep(WAIT_BEEPS)
