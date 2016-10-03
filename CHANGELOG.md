@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project pretends to adhere to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Changed the regex in the help message for the 3rd time. The previous regex was wrong as it was indicating that 1h3m is valid input while the tool expects them to be separated by space.
+
 ## [1.2.0] - 2016-10-03
 
 ### Added
