@@ -6,6 +6,9 @@ and this project pretends to adhere to [Semantic Versioning](http://semver.org/)
 
 ## [Unreleased]
 
+### Added
+- Added Windows support
+
 ### Changed
 - Updated regex from the help section to make it smaller and easier to understand hopefully. 
 

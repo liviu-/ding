@@ -8,7 +8,7 @@ Tired of `$ sleep 4231; beep`? This is a very simple solution to help with short
 - Install with `pip` or just copy the binary somewhere in `$PATH` :sparkles:
 - Python2 and Python3 compatible :star2:
 - Around 100 LOC :boom:
-- Only Linux has been tested for now :space_invader:
+- Runs on Linux, OS X, Windows, and maybe more :tada:
 
 ## Installation
 

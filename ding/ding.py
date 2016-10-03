@@ -82,7 +82,7 @@ def print_time(seconds):
     """Print countdown for `seconds`"""
     while seconds > 0:
         start = time.time()
-        os.system('clear')
+        os.system('cls' if os.name == 'nt' else 'clear') # accommodate Windows
         print(datetime.timedelta(seconds=seconds))
         seconds -= 1
         time.sleep(1 - time.time() + start)
