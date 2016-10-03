@@ -42,7 +42,7 @@ def check_input(args):
     if args[0] == 'at':
         if len(args) > 2:
             raise InvalidArguments('too many arguments')
-        if not all([arg.isnumeric() for arg in args[1].split(':')]):
+        if not all([arg.isdigit() for arg in args[1].split(':')]):
             raise InvalidArguments('there should only be numbers optionally separated by ":"')
         # Valid time
         try:
