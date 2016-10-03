@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 from __future__ import print_function
 
 import os
-import threading
 import sys
 import time
 import datetime
@@ -13,14 +12,14 @@ import datetime
 
 EXIT_MSG = """Invalid arguments: {}\n---------
 $ ding at hh[:mm[:ss]]
-$ ding in \d+[smh]( \d+[smh])*
+$ ding in ( ?\d+[smh])+
 
 Examples:
     $ ding at 15:30
     $ ding in 5m 30s
 """
 
-VERSION = '1.1.0'
+VERSION = '1.2.0'
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
@@ -43,7 +42,7 @@ def check_input(args):
     if args[0] == 'at':
         if len(args) > 2:
             raise InvalidArguments('too many arguments')
-        if not all([arg.isnumeric() for arg in args[1].split(':')]):
+        if not all([arg.isdigit() for arg in args[1].split(':')]):
             raise InvalidArguments('there should only be numbers optionally separated by ":"')
         # Valid time
         try:
@@ -83,11 +82,10 @@ def print_time(seconds):
     """Print countdown for `seconds`"""
     while seconds > 0:
         start = time.time()
-        os.system('clear')
+        os.system('cls' if os.name == 'nt' else 'clear') # accommodate Windows
         print(datetime.timedelta(seconds=seconds))
         seconds -= 1
-        end = time.time()
-        time.sleep(1 - end + start)
+        time.sleep(1 - time.time() + start)
 
 
 def beep(seconds):

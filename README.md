@@ -4,15 +4,16 @@
 
 Tired of `$ sleep 4231; beep`? This is a very simple solution to help with short-term time management. The beep sound uses the motherboard audio, so it works even if your speakers are muted, but not if you muted the PC speakers :stuck_out_tongue: . Furthermore, it works wherever there's a Linux terminal, and that includes ssh sessions.
 
-- No dependencies :dizzy:
+- No dependencies other than Python itself :dizzy:
 - Install with `pip` or just copy the binary somewhere in `$PATH` :sparkles:
 - Python2 and Python3 compatible :star2:
 - Around 100 LOC :boom:
+- Runs on Linux, OS X, Windows, and maybe more :tada:
 
 ## Installation
 
 ```
-pip install ding-ding
+$ pip install ding-ding
 ```
 
 (`ding` was taken)
