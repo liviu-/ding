@@ -55,3 +55,7 @@ $ ding at 12
 $ ding at 17:30
 $ ding at 17:30:21
 ```
+
+## I don't hear anything
+
+This happens when the audible bell was muted for your terminal or for your system. Enabling it differs between environments, so I would suggest trying out some Google searches on how to enable it. For a discussion on this, check this [issue](https://github.com/liviu-/ding/issues/5).
