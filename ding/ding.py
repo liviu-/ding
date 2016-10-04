@@ -83,15 +83,11 @@ def print_time(seconds):
     os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     while seconds > 0:
         start = time.time()
-        if os.name == 'nt':
-            os.system('cls')
-            print(datetime.timedelta(seconds=seconds))
-        else:
-            print(datetime.timedelta(seconds=seconds), end='')
+        print(datetime.timedelta(seconds=seconds), end='')
         sys.stdout.flush()
         seconds -= 1
         time.sleep(1 - time.time() + start)
-        if os.name != 'nt': print(end='\r')
+        print(end='\r')
 
 
 def beep(seconds):
