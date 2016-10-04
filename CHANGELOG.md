@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project pretends to adhere to [Semantic Versioning](http://semver.org/).
 
+## [1.3.0] - 2016-10-04
+
+### Changed
+
+- Eliminated effect on scrollback buffer: all the printed countdown steps were preserved in the terminal creating a long scrollback especially for big waiting times ([andars](https://github.com/andars) #4)
+- Changed the regex in the help message for the 3rd time. The previous regex was wrong as it was indicating that 1h3m is valid input while the tool expects them to be separated by space.
+
 ## [1.2.0] - 2016-10-03
 
 ### Added
@@ -31,6 +38,7 @@ and this project pretends to adhere to [Semantic Versioning](http://semver.org/)
 
 Initial stable release
 
+[1.3.0]: https://github.com/liviu-/ding/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/liviu-/ding/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/liviu-/ding/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/liviu-/ding/compare/v0.0.1...v1.0.0

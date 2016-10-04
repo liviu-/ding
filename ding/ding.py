@@ -12,14 +12,14 @@ import datetime
 
 EXIT_MSG = """Invalid arguments: {}\n---------
 $ ding at hh[:mm[:ss]]
-$ ding in ( ?\d+[smh])+
+$ ding in \d+[smh]( +\d+[smh])*
 
 Examples:
     $ ding at 15:30
     $ ding in 5m 30s
 """
 
-VERSION = '1.2.0'
+VERSION = '1.3.0'
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
@@ -80,12 +80,21 @@ class TimeParser():
 
 def print_time(seconds):
     """Print countdown for `seconds`"""
+    os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     while seconds > 0:
         start = time.time()
-        os.system('cls' if os.name == 'nt' else 'clear') # accommodate Windows
-        print(datetime.timedelta(seconds=seconds))
+
+        # print the time without a newline or carriage return
+        # this leaves the cursor at the end of the time while visible
+        print(datetime.timedelta(seconds=seconds), end='')
+        sys.stdout.flush()
         seconds -= 1
         time.sleep(1 - time.time() + start)
+
+        # emit a carriage return
+        # this moves the cursor back to the beginning of the line
+        # so the next time overwrites the current time
+        print(end='\r')
 
 
 def beep(seconds):
