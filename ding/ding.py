@@ -83,10 +83,17 @@ def print_time(seconds):
     os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     while seconds > 0:
         start = time.time()
+
+        # print the time without a newline or carriage return
+        # this leaves the cursor at the end of the time while visible
         print(datetime.timedelta(seconds=seconds), end='')
         sys.stdout.flush()
         seconds -= 1
         time.sleep(1 - time.time() + start)
+
+        # emit a carriage return
+        # this moves the cursor back to the beginning of the line
+        # so the next time overwrites the current time
         print(end='\r')
 
 
