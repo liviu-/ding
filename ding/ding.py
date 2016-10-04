@@ -80,6 +80,7 @@ class TimeParser():
 
 def print_time(seconds):
     """Print countdown for `seconds`"""
+    os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     while seconds > 0:
         start = time.time()
         if os.name == 'nt':
@@ -117,7 +118,6 @@ def main(args=sys.argv[1:]):
         seconds = parse_time(check_input(args))
     except InvalidArguments as e:
         sys.exit(EXIT_MSG.format(e))
-    os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     print_time(seconds)
     beep(seconds)
 
