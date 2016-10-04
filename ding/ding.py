@@ -82,10 +82,15 @@ def print_time(seconds):
     """Print countdown for `seconds`"""
     while seconds > 0:
         start = time.time()
-        os.system('cls' if os.name == 'nt' else 'clear') # accommodate Windows
-        print(datetime.timedelta(seconds=seconds))
+        if os.name == 'nt':
+            os.system('cls')
+            print(datetime.timedelta(seconds=seconds))
+        else:
+            print(datetime.timedelta(seconds=seconds), end='')
+        sys.stdout.flush()
         seconds -= 1
         time.sleep(1 - time.time() + start)
+        if os.name != 'nt': print(end='\r')
 
 
 def beep(seconds):
@@ -112,6 +117,7 @@ def main(args=sys.argv[1:]):
         seconds = parse_time(check_input(args))
     except InvalidArguments as e:
         sys.exit(EXIT_MSG.format(e))
+    os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     print_time(seconds)
     beep(seconds)
 
