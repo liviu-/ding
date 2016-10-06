@@ -63,3 +63,7 @@ def test_at_invalid_minute():
 def test_at_characters_in_string():
     with pytest.raises(ding.InvalidArguments) as excinfo:
         x = ding.check_input(['at', '22a:71'])
+
+def test_silent_not_at_end():
+    with pytest.raises(ding.InvalidArguments) as excinfo:
+        x = ding.check_input(['--silent', 'in', '1s'])
