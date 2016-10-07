@@ -8,3 +8,7 @@ def run_tool(args):
 def test_integration_in_1_second():
     run_tool(['in', '1s'])
 
+def test_integration_with_notimer():
+    p, stdout, stderr = run_tool(['in', '1s', '--no-timer'])
+    assert(stderr == '')
+    assert(stdout == "\07" * 4) # these are the beeps

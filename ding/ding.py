@@ -78,23 +78,26 @@ class TimeParser():
                 else (user_time + datetime.timedelta(days=1) - now).seconds)
 
 
-def print_time(seconds):
-    """Print countdown for `seconds`"""
-    os.system('cls' if os.name == 'nt' else 'clear') # initial clear
+def countdown(seconds, notimer=False):
+    """Countdown for `seconds`, printing values unless `notimer`"""
+    if not notimer:
+        os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     while seconds > 0:
         start = time.time()
 
         # print the time without a newline or carriage return
         # this leaves the cursor at the end of the time while visible
-        print(datetime.timedelta(seconds=seconds), end='')
-        sys.stdout.flush()
+        if not notimer:
+            print(datetime.timedelta(seconds=seconds), end='')
+            sys.stdout.flush()
         seconds -= 1
         time.sleep(1 - time.time() + start)
 
         # emit a carriage return
         # this moves the cursor back to the beginning of the line
         # so the next time overwrites the current time
-        print(end='\r')
+        if not notimer:
+            print(end='\r')
 
 
 def beep(seconds):
@@ -117,11 +120,17 @@ def main(args=sys.argv[1:]):
     if args and args[0] == '--version':
         print(VERSION)
         sys.exit()
+    if args and args[-1] in ['-n', '--no-timer']:
+        notimer = True
+        args.pop()
+    else:
+        notimer = False
+
     try:
         seconds = parse_time(check_input(args))
     except InvalidArguments as e:
         sys.exit(EXIT_MSG.format(e))
-    print_time(seconds)
+    countdown(seconds, notimer)
     beep(seconds)
 
 if __name__ == '__main__':
