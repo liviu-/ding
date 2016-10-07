@@ -78,16 +78,16 @@ class TimeParser():
                 else (user_time + datetime.timedelta(days=1) - now).seconds)
 
 
-def countdown(seconds, silent=False):
-    """Countdown for `seconds`, printing values unless `silent`"""
-    if not silent:
+def countdown(seconds, notimer=False):
+    """Countdown for `seconds`, printing values unless `notimer`"""
+    if not notimer:
         os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     while seconds > 0:
         start = time.time()
 
         # print the time without a newline or carriage return
         # this leaves the cursor at the end of the time while visible
-        if not silent:
+        if not notimer:
             print(datetime.timedelta(seconds=seconds), end='')
             sys.stdout.flush()
         seconds -= 1
@@ -96,7 +96,7 @@ def countdown(seconds, silent=False):
         # emit a carriage return
         # this moves the cursor back to the beginning of the line
         # so the next time overwrites the current time
-        if not silent:
+        if not notimer:
             print(end='\r')
 
 
@@ -120,17 +120,17 @@ def main(args=sys.argv[1:]):
     if args and args[0] == '--version':
         print(VERSION)
         sys.exit()
-    if args and args[-1] in ['-s', '--silent']:
-        silent = True
+    if args and args[-1] in ['-n', '--no-timer']:
+        notimer = True
         args.pop()
     else:
-        silent = False
+        notimer = False
 
     try:
         seconds = parse_time(check_input(args))
     except InvalidArguments as e:
         sys.exit(EXIT_MSG.format(e))
-    countdown(seconds, silent)
+    countdown(seconds, notimer)
     beep(seconds)
 
 if __name__ == '__main__':
