@@ -9,6 +9,10 @@ and this project pretends to adhere to [Semantic Versioning](http://semver.org/)
 ### Added
 - Added a `--no-timer` option to silence the timer ([mikaylathompson](https://github.com/mikaylathompson) -- [#9](https://github.com/liviu-/ding/pull/9))
 - Added a `--command` option to optionally replace the `sys.stdout.write('\a')`. This way, one may use a custom command to be called when the timer finishes ([#8](https://github.com/liviu-/ding/issues/8), [#6](https://github.com/liviu-/ding/pull/6), [#5](https://github.com/liviu-/ding/issues/5))
+ 
+## Removed
+- Removed Python2.6 support because very few people still use it, and it requires more boilercode code to keep it compatible.
+- Temporarily  remove support for the development Python version cause Travis [fails with seg fault](https://travis-ci.org/liviu-/ding/jobs/166043298) although it works locally. I'll add it back in the future versions.
 
 ## [1.3.0] - 2016-10-04
 
