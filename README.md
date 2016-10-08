@@ -54,6 +54,12 @@ $ ding in 2m 15s
 $ ding at 12
 $ ding at 17:30
 $ ding at 17:30:21
+
+# Custom command
+$ ding in 1s --command beep
+
+# Hide timer
+$ ding in 1s --no-timer
 ```
 
 ## I don't hear anything

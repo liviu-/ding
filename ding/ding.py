@@ -4,53 +4,60 @@
 from __future__ import unicode_literals
 from __future__ import print_function
 
+import re
 import os
 import sys
 import time
 import datetime
+import argparse
 
-
-EXIT_MSG = """Invalid arguments: {}\n---------
-$ ding at hh[:mm[:ss]]
-$ ding in \d+[smh]( +\d+[smh])*
-
-Examples:
-    $ ding at 15:30
-    $ ding in 5m 30s
-"""
 
 VERSION = '1.3.0'
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
 
-class InvalidArguments(Exception):
-    pass
+def relative_time(arg):
+    """Validate user provided relative time"""
+    if not re.match('\d+[smh]( +\d+[smh])*', arg):
+        raise argparse.ArgumentTypeError("Invalid time format: {}".format(arg))
+    return arg
 
 
-def check_input(args):
-    """Validate user input"""
-    if len(args) < 2 or args[0] not in ['in', 'at']:
-        raise InvalidArguments('insufficient number of arguments')
+def absolute_time(arg):
+    """Validate user provided absolute time"""
+    if not all([t.isdigit() for t in arg.split(':')]):
+        raise argparse.ArgumentTypeError("Invalid time format: {}".format(arg))
+    # Valid time (e.g. hour must be between 0..23)
+    try:
+        datetime.time(*map(int, arg.split(':')))
+    except ValueError as e:
+        raise argparse.ArgumentTypeError("Invalid time format: {}".format(e))
+    return arg
 
-    if args[0] == 'in':
-        if not all(arg.endswith(('s', 'm', 'h')) for arg in args[1:]):
-            raise InvalidArguments('please use s/m/h suffixes')
-        if not all(arg[:-1].isdigit() for arg in args[1:]):
-            raise InvalidArguments('please use numbers for specifying the duration of time units')
 
-    if args[0] == 'at':
-        if len(args) > 2:
-            raise InvalidArguments('too many arguments')
-        if not all([arg.isdigit() for arg in args[1].split(':')]):
-            raise InvalidArguments('there should only be numbers optionally separated by ":"')
-        # Valid time
-        try:
-            datetime.time(*map(int, args[1].split(':')))
-        except ValueError as e:
-            raise InvalidArguments(e)
+def get_args(args):
+    """Parse commandline arguments"""
+    parent_parser = argparse.ArgumentParser(
+        add_help=False, description='Lightweight time management CLI tool')
+    parent_parser.add_argument(
+        '-n', '--no-timer', action='store_true', help='Hide the countdown timer')
+    parent_parser.add_argument(
+        '-c', '--command', type=str, help='Use a custom command instead of the default beep')
 
-    return args
+    parser = argparse.ArgumentParser() 
+    parser.add_argument('-v', '--version', action='version', version=VERSION)
+    subparsers = parser.add_subparsers(dest='mode')                                             
+    subparsers.required = True
+
+    parser_in = subparsers.add_parser('in', parents=[parent_parser])
+    parser_in.add_argument('time', nargs='+', type=relative_time,
+            help='relative time \d+[smh]( +\d+[smh])* (e.g. 1h 30m)')                     
+
+    parser_at = subparsers.add_parser('at', parents=[parent_parser])                          
+    parser_at.add_argument('time', type=absolute_time, help='absolute time [hh:[mm[:ss]]]')       
+
+    return parser.parse_args(args)
 
 class TimeParser():
     """Class helping with parsing user provided time into seconds"""
@@ -73,7 +80,7 @@ class TimeParser():
     def _get_seconds_absolute(self):
         now = datetime.datetime.now()
         user_time = (datetime.datetime.combine(datetime.date.today(),
-                                               datetime.time(*map(int, self.time[0].split(':')))))
+                                               datetime.time(*map(int, self.time.split(':')))))
         return ((user_time - now).seconds if user_time > now
                 else (user_time + datetime.timedelta(days=1) - now).seconds)
 
@@ -100,38 +107,29 @@ def countdown(seconds, notimer=False):
             print(end='\r')
 
 
-def beep(seconds):
+def beep(seconds, command):
     """Make the beep noise"""
     for _ in range(N_BEEPS):
-        sys.stdout.write('\a')
-        sys.stdout.flush()
+        if command:
+            os.system(command)
+        else:
+            sys.stdout.write('\a')
+            sys.stdout.flush()
         time.sleep(WAIT_BEEPS)
 
 
 def parse_time(args):
     """Figure out the number of seconds to wait"""
-    relative = True if args[0] == 'in' else False
-    user_time = args[1:]
-    parser = TimeParser(user_time, relative)
+    relative = args.mode == 'in'
+    parser = TimeParser(args.time, relative)
     return parser.get_seconds()
 
 
 def main(args=sys.argv[1:]):
-    if args and args[0] == '--version':
-        print(VERSION)
-        sys.exit()
-    if args and args[-1] in ['-n', '--no-timer']:
-        notimer = True
-        args.pop()
-    else:
-        notimer = False
-
-    try:
-        seconds = parse_time(check_input(args))
-    except InvalidArguments as e:
-        sys.exit(EXIT_MSG.format(e))
-    countdown(seconds, notimer)
-    beep(seconds)
+    args = get_args(args)
+    seconds = parse_time(args)
+    countdown(seconds, args.no_timer)
+    beep(seconds, args.command)
 
 if __name__ == '__main__':
     main()
