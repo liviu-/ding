@@ -4,11 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project pretends to adhere to [Semantic Versioning](http://semver.org/).
 
+## [2.0.0]
+
+### Added
+- Added a `--no-timer` option to silence the timer ([mikaylathompson](https://github.com/mikaylathompson) -- [#9](https://github.com/liviu-/ding/pull/9))
+- Added a `--command` option to optionally replace the `sys.stdout.write('\a')`. This way, one may use a custom command to be called when the timer finishes ([#8](https://github.com/liviu-/ding/issues/8), [#6](https://github.com/liviu-/ding/pull/6), [#5](https://github.com/liviu-/ding/issues/5))
+
+## Changed
+- Updated README.md documentation.
+ 
+## Removed
+- Removed Python2.6 support because very few people still use it, and it requires more boilercode code to keep it compatible.
+- Temporarily  remove support for the development Python version cause Travis [fails with seg fault](https://travis-ci.org/liviu-/ding/jobs/166043298) although it works locally. I'll add it back in the future versions.
+
 ## [1.3.0] - 2016-10-04
 
 ### Changed
 
-- Eliminated effect on scrollback buffer: all the printed countdown steps were preserved in the terminal creating a long scrollback especially for big waiting times ([andars](https://github.com/andars) #4)
+- Eliminated effect on scrollback buffer: all the printed countdown steps were preserved in the terminal creating a long scrollback especially for big waiting times ([andars](https://github.com/andars) -- [#4](https://github.com/liviu-/ding/pull/4))
 - Changed the regex in the help message for the 3rd time. The previous regex was wrong as it was indicating that 1h3m is valid input while the tool expects them to be separated by space.
 
 ## [1.2.0] - 2016-10-03
@@ -38,6 +51,7 @@ and this project pretends to adhere to [Semantic Versioning](http://semver.org/)
 
 Initial stable release
 
+[2.0.0]: https://github.com/liviu-/ding/compare/v1.3.0..v2.0.0
 [1.3.0]: https://github.com/liviu-/ding/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/liviu-/ding/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/liviu-/ding/compare/v1.0.0...v1.1.0
