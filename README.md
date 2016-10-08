@@ -55,13 +55,39 @@ $ ding at 12
 $ ding at 17:30
 $ ding at 17:30:21
 
-# Custom command
-$ ding in 1s --command beep
+# Custom command for beeping
+$ ding in 1s --command "paplay --volume 15000 beep.wav"
 
 # Hide timer
 $ ding in 1s --no-timer
 ```
+For more help, try:
 
-## I don't hear anything
+```
+$ ding in --help
+$ ding at --help
+```
 
-This happens when the audible bell was muted for your terminal or for your system. Enabling it differs between environments, so I would suggest trying out some Google searches on how to enable it. For a discussion on this, check this [issue](https://github.com/liviu-/ding/issues/5).
+## FAQ
+
+### How come I don't hear anything?
+
+This happens when the audible bell was muted for your terminal or for your system. Enabling it differs between environments, so I would suggest trying out some Google searches on how to enable it. For a discussion on this, check this [issue](https://github.com/liviu-/ding/issues/5). You can also use your own custom command that actually beeps for you using `$ ding in 1s -c your-command`
+
+### How can I use a custom command all the time?
+
+Try adding to your start-up script:
+```bash
+function ding() { ding $@ -c custom-command}
+```
+(inspired from [mikaylathompson](https://github.com/mikaylathompson)'s comment [here](https://github.com/liviu-/ding/pull/9))
+
+### How can I to run it in the background?
+
+```
+$ ding in 1s --no-timer&
+```
+
+### Can I use desktop notifications?
+
+Unfortuantely, desktop notifications typically come with big GUI dependencies and tend to be less portable. However, you can integrate notifications using a custom command like this `$ ding in 1s --command "notify-send 'Sup'"`. This will display the notification 4 times by default, but if you think it would be useful to have an option to specify the number of calls, let me know by opening an [issue or a PR](https://github.com/liviu-/ding/issues).
