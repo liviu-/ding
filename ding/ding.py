@@ -12,7 +12,7 @@ import datetime
 import argparse
 
 
-VERSION = '2.0.0'
+VERSION = '2.0.1'
 N_BEEPS = 4
 WAIT_BEEPS = 0.15
 
@@ -54,6 +54,10 @@ def get_args(args):
     parser_in.add_argument('time', nargs='+', type=relative_time,
             help='relative time \d+[smh]( +\d+[smh])* (e.g. 1h 30m)')                     
 
+    parser_in = subparsers.add_parser('every', parents=[parent_parser])
+    parser_in.add_argument('time', nargs='+', type=relative_time,
+            help='relative time \d+[smh]( +\d+[smh])* (e.g. 2m 15s)')      
+
     parser_at = subparsers.add_parser('at', parents=[parent_parser])                          
     parser_at.add_argument('time', type=absolute_time, help='absolute time [hh:[mm[:ss]]]')       
 
@@ -91,7 +95,6 @@ def countdown(seconds, notimer=False):
         os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     while seconds > 0:
         start = time.time()
-
         # print the time without a newline or carriage return
         # this leaves the cursor at the end of the time while visible
         if not notimer:
@@ -120,16 +123,24 @@ def beep(seconds, command):
 
 def parse_time(args):
     """Figure out the number of seconds to wait"""
-    relative = args.mode == 'in'
+    relative = args.mode == 'in' or args.mode == "every"
+    #print(args.time)
     parser = TimeParser(args.time, relative)
     return parser.get_seconds()
 
 
 def main(args=sys.argv[1:]):
     args = get_args(args)
-    seconds = parse_time(args)
-    countdown(seconds, args.no_timer)
-    beep(seconds, args.command)
+    once = True
+    while once or args.mode == "every":
+        once = False
+        try:
+            seconds = parse_time(args)
+            countdown(seconds, args.no_timer)
+            beep(seconds, args.command)
+        except KeyboardInterrupt as e:
+            print() # ending current line
+            break # without printing useless stack...
 
 if __name__ == '__main__':
     main()
