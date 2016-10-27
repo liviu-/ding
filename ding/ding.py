@@ -131,16 +131,18 @@ def parse_time(args):
 
 def main(args=sys.argv[1:]):
     args = get_args(args)
-	while True:
+    while True:
         try:
             seconds = parse_time(args)
             countdown(seconds, args.no_timer)
             beep(seconds, args.command)
+			# doing if here so there just cant be any stack printed for an interrupt
+            if args.mode != "every":
+                break
         except KeyboardInterrupt:
             print() # ending current line
             break # without printing useless stack...
-		if args.mode != "every":
-			break
+        
 
 if __name__ == '__main__':
     main()
