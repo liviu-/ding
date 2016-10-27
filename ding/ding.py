@@ -136,7 +136,7 @@ def main(args=sys.argv[1:]):
             seconds = parse_time(args)
             countdown(seconds, args.no_timer)
             beep(seconds, args.command)
-			# doing if here so there just cant be any stack printed for an interrupt
+            # doing `if` here so there just can't be any stack printed for an interrupt
             if args.mode != "every":
                 break
         except KeyboardInterrupt:
