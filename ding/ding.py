@@ -95,6 +95,7 @@ def countdown(seconds, notimer=False):
         os.system('cls' if os.name == 'nt' else 'clear') # initial clear
     while seconds > 0:
         start = time.time()
+
         # print the time without a newline or carriage return
         # this leaves the cursor at the end of the time while visible
         if not notimer:
