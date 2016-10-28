@@ -41,6 +41,10 @@ def test_insufficient_arguments_at():
     with pytest.raises(SystemExit) as excinfo:
         assert ding.get_args(['at'])
 
+def test_insufficient_arguments_at():
+    with pytest.raises(SystemExit) as excinfo:
+        assert ding.get_args(['every'])
+
 def test_in_wrong_suffix():
     with pytest.raises(SystemExit) as excinfo:
         assert ding.get_args(['in', '1x'])
