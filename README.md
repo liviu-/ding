@@ -55,6 +55,9 @@ $ ding at 12
 $ ding at 17:30
 $ ding at 17:30:21
 
+# Recurrent notification
+$ ding every 15m
+
 # Custom command for beeping
 $ ding in 1s --command "paplay --volume 15000 beep.wav"
 
@@ -66,6 +69,7 @@ For more help, try:
 ```
 $ ding in --help
 $ ding at --help
+$ ding every --help
 ```
 
 ## FAQ
