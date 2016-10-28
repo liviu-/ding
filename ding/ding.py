@@ -54,6 +54,10 @@ def get_args(args):
     parser_in.add_argument('time', nargs='+', type=relative_time,
             help='relative time \d+[smh]( +\d+[smh])* (e.g. 1h 30m)')                     
 
+    parser_every = subparsers.add_parser('every', parents=[parent_parser])
+    parser_every.add_argument('time', nargs='+', type=relative_time,
+            help='relative time \d+[smh]( +\d+[smh])* (e.g. 2m 15s)')      
+
     parser_at = subparsers.add_parser('at', parents=[parent_parser])                          
     parser_at.add_argument('time', type=absolute_time, help='absolute time [hh:[mm[:ss]]]')       
 
@@ -120,16 +124,25 @@ def beep(seconds, command):
 
 def parse_time(args):
     """Figure out the number of seconds to wait"""
-    relative = args.mode == 'in'
+    relative = args.mode == 'in' or args.mode == "every"
     parser = TimeParser(args.time, relative)
     return parser.get_seconds()
 
 
 def main(args=sys.argv[1:]):
     args = get_args(args)
-    seconds = parse_time(args)
-    countdown(seconds, args.no_timer)
-    beep(seconds, args.command)
+    while True:
+        try:
+            seconds = parse_time(args)
+            countdown(seconds, args.no_timer)
+            beep(seconds, args.command)
+            # doing `if` here so there just can't be any stack printed for an interrupt
+            if args.mode != "every":
+                break
+        except KeyboardInterrupt:
+            print() # ending current line
+            break # without printing useless stack...
+        
 
 if __name__ == '__main__':
     main()
