@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project pretends to adhere to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [2.1.0]
+
+### Added
 
 - Added `every` mode to enable recurring beep. ([anemones](https://github.com/anemones) -- [#11](https://github.com/liviu-/ding/pull/11))
 
@@ -55,7 +57,7 @@ and this project pretends to adhere to [Semantic Versioning](http://semver.org/)
 
 Initial stable release
 
-[Unreleased]: https://github.com/liviu-/ding/compare/v2.0.0..HEAD
+[2.1.0]: https://github.com/liviu-/ding/compare/v2.0.0..2.1.0
 [2.0.0]: https://github.com/liviu-/ding/compare/v1.3.0..v2.0.0
 [1.3.0]: https://github.com/liviu-/ding/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/liviu-/ding/compare/v1.1.0..v1.2.0
