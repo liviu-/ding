@@ -94,4 +94,4 @@ $ ding in 1s --no-timer&
 
 ### Can I use desktop notifications?
 
-Unfortuantely, desktop notifications typically come with big GUI dependencies and tend to be less portable. However, you can integrate notifications using a custom command like this `$ ding in 1s --command "notify-send 'Sup'"`. This will display the notification 4 times by default, but if you think it would be useful to have an option to specify the number of calls, let me know by opening an [issue](https://github.com/liviu-/ding/issues) or a [PR](https://github.com/liviu-/ding/pulls).
+Unfortunately, desktop notifications typically come with big GUI dependencies and tend to be less portable. However, you can integrate notifications using a custom command like this `$ ding in 1s --command "notify-send 'Sup'"`. This will display the notification 4 times by default, but if you think it would be useful to have an option to specify the number of calls, let me know by opening an [issue](https://github.com/liviu-/ding/issues) or a [PR](https://github.com/liviu-/ding/pulls).
